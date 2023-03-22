@@ -20,7 +20,8 @@ class DrinksDatabase {
   //Creazione db
 
   _database = await _initDB("app.db");
-  return _database!;
+  return _database!; 
+
   
   }
 
