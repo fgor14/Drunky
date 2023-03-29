@@ -1,3 +1,4 @@
+import 'package:drunky_app/screen/app.dart';
 import 'package:drunky_app/screen/welcomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,5 +11,5 @@ void main() {
         .portraitUp, //nell'array diamo i movimenti che è consentito fare cioè dal basso verso
     DeviceOrientation.portraitDown, //l'alto e viceversa
   ]);
-  runApp(WelcomePage());
+  runApp(App());
 }

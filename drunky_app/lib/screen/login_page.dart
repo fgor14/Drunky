@@ -26,36 +26,37 @@ class _LoginPageState extends State<LoginPage> {
       );
 }
 
+class signIn extends StatefulWidget {
+  const signIn({Key? key}) : super(key: key);
 
-// class signIn extends StatefulWidget{
-//   const signIn({Key? key}) : super(key: key)
+  @override
+  _signInState createState() {
+    return _signInState();
+  }
+}
 
-//   @override
-//   State<StatefulWidget> createState() => _signInState();
-// }
+class _signInState extends State<signIn> {
+  Widget build(BuildContext context) => Card(
+        child: Container(
+          color: Colors.red,
+          width: 300.0,
+          height: 500.0,
+          child: Column(
+            children: [
+              _emailField(),
+              _passwordField(),
+            ],
+          ),
+        ),
+      );
+}
 
-// class _signInState extends State<signIn>{
-//   Widget build(BuildContext context) => Card(
-//         child: Container(
-//           color: Colors.red,
-//           width: 300.0,
-//           height: 500.0,
-//           child: Column(
-//             children: [
-//               _emailField(),
-//               _passwordField(),
-//             ],
-//           ),
-//         ),
-//       );
-// }
+Widget _emailField() => TextField(
+      keyboardType: TextInputType.emailAddress,
+      style: const TextStyle(
+        fontSize: 16.0,
+        color: Colors.black,
+      ),
+    );
 
-// Widget _emailField() => TextField(
-//       keyboardType: TextInputType.emailAddress,
-//       style: const TextStyle(
-//         fontSize: 16.0,
-//         color: Colors.black,
-//       ),
-//     );
-
-// Widget _passwordField() => TextField();
+Widget _passwordField() => TextField();
