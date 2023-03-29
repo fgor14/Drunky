@@ -15,3 +15,6 @@ La pagina del profilo è ancora da decidere dove posizionare, ma sarà una pagin
 Nella varie liste dei drink ci sarà la possibilità di cliccare sul drink e andare su una pagine dei dettagli con ingredienti e la ricetta, in più grazie ad un'icona ci sarà la possibilità di aggiungere il drink ai preferiti e in fondo alla pagina una lista di cocktail consigliati.
 
 Nel caso avessimo abbastanza tempo potremmo implementare una parte di social dove poter seguire persone e vedere/postare foto con i drink preparati dagli utenti.
+
+35661e 1, 53, 102, 30
+70e000

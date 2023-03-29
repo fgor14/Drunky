@@ -50,8 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (value) {
                         if (value!.isEmpty ||
                             RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}')
-                                .hasMatch(value!))
-                          return "Metti il nome giusto";
+                                .hasMatch(value)) return "Metti il nome giusto";
                       }),
                 ),
                 Padding(
@@ -62,8 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (value) {
                         if (value!.isEmpty ||
                             RegExp(r'^[a-z A-Z] + @ + . [0-9] +$')
-                                .hasMatch(value!))
-                          return "Metti il nome giusto";
+                                .hasMatch(value)) return "Metti il nome giusto";
                       }),
                 ),
                 Row(

@@ -27,7 +27,7 @@ class RegisterPage extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty ||
                             RegExp(r'^[a-z] + [A-Z] + [0-9] +$')
-                                .hasMatch(value!))
+                                .hasMatch(value))
                           return "L'user name inserito non va bene";
                       }),
                 ),
@@ -40,8 +40,7 @@ class RegisterPage extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty ||
                             RegExp(r'^[a-z A-Z] + @ + . [0-9] +$')
-                                .hasMatch(value!))
-                          return "Metti il nome giusto";
+                                .hasMatch(value)) return "Metti il nome giusto";
                       }),
                 ),
                 Padding(

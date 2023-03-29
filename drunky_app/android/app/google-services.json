@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "476981194606",
+    "project_id": "pwdrunky",
+    "storage_bucket": "pwdrunky.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476981194606:android:bb0a079957ff73b6d0db7f",
+        "android_client_info": {
+          "package_name": "com.example.drunky_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476981194606-en1j0nj32vhbtoopj7sgg1vm8rdjs8gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBovAFyWAI-mRRpExraD8_sBqRGHmTrJug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476981194606-en1j0nj32vhbtoopj7sgg1vm8rdjs8gd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
