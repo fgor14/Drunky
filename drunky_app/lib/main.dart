@@ -1,4 +1,5 @@
 import 'package:drunky_app/screen/welcomePage.dart';
+import 'package:drunky_app/screen/homepage_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,43 +32,39 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+List<Widget> pages = [
+  Homepage(),
+];
+
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Image.asset('assets/images/logo.png', height: 25.0),
+        centerTitle: true,
+        flexibleSpace: Container(),
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         elevation: 0,
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        backgroundColor: Colors.lightGreen,
         onDestinationSelected: (value) {
           setState(() {
             _selectedIndex = value;
           });
         },
         destinations: [
-          NavigationDestination(
-              icon: Icon(Icons.home_outlined, color: Colors.green[900]),
-              label: 'Home'),
-          NavigationDestination(
-              icon: Icon(Icons.favorite_outline, color: Colors.green[900]),
-              label: 'Favorite'),
-          NavigationDestination(
-              icon: Icon(Icons.add, color: Colors.green[900]), label: 'Create'),
-          NavigationDestination(
-              icon:
-                  Icon(Icons.account_circle_outlined, color: Colors.green[900]),
-              label: 'Account')
+          NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Homepage' ),
+          NavigationDestination(icon: Icon(Icons.local_drink), label: 'Drinks'),
+          NavigationDestination(icon: Icon(Icons.add), label: 'Create'),
+          NavigationDestination(icon: Icon(Icons.favorite_outline), label: 'Favorite')
         ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      body: pages.elementAt(_selectedIndex) // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
