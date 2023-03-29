@@ -5,15 +5,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  WidgetsFlutterBinding
-      .ensureInitialized(); //questo widget ci permette di visualizzare la nostra app solo in verticale
+  WidgetsFlutterBinding.ensureInitialized(); //questo widget ci permette di visualizzare la nostra app solo in verticale
   SystemChrome.setPreferredOrientations([
     DeviceOrientation
         .portraitUp, //nell'array diamo i movimenti che è consentito fare cioè dal basso verso
     DeviceOrientation.portraitDown, //l'alto e viceversa
   ]);
+  await Firebase.initializeApp();
   runApp(App());
 }
 
