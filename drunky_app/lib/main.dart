@@ -1,4 +1,3 @@
-import 'package:drunky_app/screen/app.dart';
 import 'package:drunky_app/screen/welcomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,4 +11,13 @@ void main() {
     DeviceOrientation.portraitDown, //l'alto e viceversa
   ]);
   runApp(App());
+}
+
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        home: WelcomePage(),
+      );
 }
