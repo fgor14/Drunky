@@ -17,9 +17,10 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.lightGreen,
-          title: const Text("title"),
-        ),
+        backgroundColor: Colors.green,
+        title: Image.asset('assets/images/logo.png', height: 25.0),
+        centerTitle: true,
+      ),
         body: ListView(
           scrollDirection: Axis.vertical,
           padding: const EdgeInsets.all(15),
