@@ -48,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.green,
           title: Image.asset('assets/images/logo.png', height: 25.0),
           centerTitle: true,
+          automaticallyImplyLeading: false
         ),
         bottomNavigationBar: NavigationBar(
           selectedIndex: _selectedIndex,
