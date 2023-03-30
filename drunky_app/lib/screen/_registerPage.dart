@@ -62,7 +62,7 @@ class RegisterPage extends StatelessWidget {
                       child: ElevatedButton(
                           style: ButtonStyle(
                             fixedSize: MaterialStateProperty.all<Size>(
-                                Size.fromWidth(310.0)),
+                                Size.fromWidth(290.0)),
                             backgroundColor:
                                 MaterialStateProperty.all<Color>(Colors.green),
                           ),

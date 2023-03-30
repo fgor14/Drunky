@@ -16,22 +16,23 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Drunky',
-      home: HomePage(),
+      home: HomePage2(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage2 extends StatefulWidget {
+  const HomePage2({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage2> {
 // text fields' controllers
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _recipeController = TextEditingController();
 
   final CollectionReference _products =
       FirebaseFirestore.instance.collection('drinks');
@@ -54,14 +55,18 @@ class _HomePageState extends State<HomePage> {
               children: [
                 TextField(
                   controller: _nameController,
-                  decoration: const InputDecoration(labelText: 'Name'),
+                  decoration: const InputDecoration(labelText: 'Nome drink'),
                 ),
                 TextField(
-                  keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
                   controller: _descriptionController,
                   decoration: const InputDecoration(
-                    labelText: 'Description',
+                    labelText: 'Descrizione',
+                  ),
+                ),
+                TextField(
+                  controller: _recipeController,
+                  decoration: const InputDecoration(
+                    labelText: 'Ricetta',
                   ),
                 ),
                 const SizedBox(
@@ -72,12 +77,16 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () async {
                     final String name = _nameController.text;
                     final String description  = _descriptionController.text;
-                    
+                    final String recipe = _recipeController.text;
+
+
                     if (description != null) {
-                        await _products.add({"name": name, "description": description});
+                        await _products.add({"name": name, "description": description , "recipe": recipe});
 
                       _nameController.text = '';
                       _descriptionController.text = '';
+                      _recipeController.text= '';
+
                         Navigator.of(context).pop();
                     }
                   },
@@ -93,6 +102,7 @@ class _HomePageState extends State<HomePage> {
 
       _nameController.text = documentSnapshot['name'];
       _descriptionController.text = documentSnapshot['description'];
+      _recipeController.text = documentSnapshot['recipe'];
     }
 
     await showModalBottomSheet(
@@ -114,13 +124,18 @@ class _HomePageState extends State<HomePage> {
                   decoration: const InputDecoration(labelText: 'Name'),
                 ),
                 TextField(
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  controller: _descriptionController,
-                  decoration: const InputDecoration(
-                    labelText: 'Description',
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(
+                      labelText: "Description",
+                    ),
                   ),
-                ),
+                TextField(
+                    controller: _recipeController,
+                    decoration: const InputDecoration(
+                      labelText: "Recipe",
+                    ),
+                  ),
+
                 const SizedBox(
                   height: 20,
                 ),
@@ -129,13 +144,16 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () async {
                     final String name = _nameController.text;
                     final String description = _descriptionController.text;
+                    final String recipe = _recipeController.text;
                     if (description != null) {
 
                         await _products
                             .doc(documentSnapshot!.id)
-                            .update({"name": name, "description": description});
+                            .update({"name": name, "description": description , "recipe": recipe});
                       _nameController.text = '';
                       _descriptionController.text = '';
+                      _recipeController.text= "";
+                      
                         Navigator.of(context).pop();
                     }
                   },
@@ -150,14 +168,16 @@ class _HomePageState extends State<HomePage> {
     await _products.doc(productId).delete();
 
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('You have successfully deleted a product')));
+        content: Text('Hai eliminato un prodotto con successo!')));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Firebase Firestore')),
+        
+        backgroundColor: Colors.green,
+        title: const Center(child: Text('Drunky Community')),
       ),
       body: StreamBuilder(
         stream: _products.snapshots(),
@@ -173,19 +193,24 @@ class _HomePageState extends State<HomePage> {
                   child: ListTile(
                     title: Text(documentSnapshot['name']),
                     subtitle: Text(documentSnapshot['description']),
+                    
                     trailing: SizedBox(
                       width: 100,
                       child: Row(
+                        
                         children: [
+                          
                           IconButton(
                               icon: const Icon(Icons.edit),
                               onPressed: () =>
                                   _update(documentSnapshot)),
                           IconButton(
+                            
                               icon: const Icon(Icons.delete),
                               onPressed: () =>
                                   _delete(documentSnapshot.id)),
                         ],
+                        
                       ),
                     ),
                   ),
@@ -201,6 +226,8 @@ class _HomePageState extends State<HomePage> {
       ),
 // Add new product
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        
         onPressed: () => _create(),
         child: const Icon(Icons.add),
 

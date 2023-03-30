@@ -2,6 +2,7 @@ import 'package:drunky_app/screen/create_screen.dart';
 import 'package:drunky_app/screen/favorite_screen.dart';
 import 'package:drunky_app/screen/welcomePage.dart';
 import 'package:drunky_app/screen/homepage_screen.dart';
+import 'package:drunky_app/services/CRUD.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -60,13 +61,25 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
           destinations: [
-            NavigationDestination(
-                icon: Icon(Icons.home_outlined), label: 'Homepage'),
+            NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Homepage'),
             NavigationDestination(icon: Icon(Icons.add), label: 'Create'),
-            NavigationDestination(
-                icon: Icon(Icons.favorite_outline), label: 'Favorite')
+            NavigationDestination(icon: Icon(Icons.favorite_outline), label: 'Favorite')
           ],
         ),
-        body: pages.elementAt(_selectedIndex));
+        body: pages.elementAt(_selectedIndex),
+        floatingActionButton: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 80.0),
+                child: FloatingActionButton(
+
+          backgroundColor: Colors.green,
+          onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>HomePage2())),
+          child: Icon(Icons.code)),
+              ),
+    );
   }
 }
+
+
