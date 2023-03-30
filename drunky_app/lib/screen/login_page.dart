@@ -1,3 +1,4 @@
+import 'package:drunky_app/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:drunky_app/screen/login_page.dart';
@@ -78,7 +79,8 @@ class _LoginPageState extends State<LoginPage> {
                             MaterialStateProperty.all<Color>(Colors.green),
                       ),
                       child: Text('Login'),
-                      onPressed: () {},
+                      onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context)=> MyHomePage())),
                     )
                   ],
                 )
