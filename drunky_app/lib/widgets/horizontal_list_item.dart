@@ -5,14 +5,16 @@ class HorizontalListItem extends StatelessWidget {
   final String srcProfile;
   final String name;
   final String description;
-  final List <String> recipe;
-  
+  final List<String> recipe;
+  final bool modify;
+
   const HorizontalListItem(
       {super.key,
       required this.srcProfile,
       required this.name,
       required this.description,
-      required this.recipe});
+      required this.recipe,
+      required this.modify});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class HorizontalListItem extends StatelessWidget {
           onTap: () => {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => DetailScreen(srcProfile: srcProfile, name: name, description: description, recipe: recipe))
+              MaterialPageRoute(builder: (context) => DetailScreen(srcProfile: srcProfile, name: name, description: description, recipe: recipe, modify: modify,))
             )
           },
           child: Column(
