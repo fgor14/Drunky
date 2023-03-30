@@ -28,7 +28,23 @@ class WelcomePage extends StatelessWidget {
 
   Widget signInButton(BuildContext context) => ElevatedButton(
         child: Text('INIZIA'),
-        onPressed: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => LoginPage())),
+        onPressed: () {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  LoginPage(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1.0, 0.0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+            ),
+          );
+        },
       );
 }

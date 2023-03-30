@@ -22,48 +22,53 @@ class RegisterPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
-                      decoration:
-                          InputDecoration(labelText: 'Metti il tuo username'),
+                      decoration: InputDecoration(
+                          labelText: 'Username',
+                          labelStyle: TextStyle(fontStyle: FontStyle.italic)),
                       validator: (value) {
                         if (value!.isEmpty ||
-                            RegExp(r'^[a-z] + [A-Z] + [0-9] +$')
-                                .hasMatch(value))
-                          return "L'user name inserito non va bene";
+                            RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value))
+                          return "Puoi utilizzare solo caratteri o numeri";
                       }),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
                       obscureText: true,
-                      decoration:
-                          InputDecoration(labelText: 'Metti la password'),
+                      decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: TextStyle(fontStyle: FontStyle.italic)),
                       validator: (value) {
                         if (value!.isEmpty ||
-                            RegExp(r'^[a-z A-Z] + @ + . [0-9] +$')
-                                .hasMatch(value)) return "Metti il nome giusto";
+                            RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value))
+                          return "Puoi utilizzare solo caratteri o numeri";
                       }),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
                       obscureText: true,
-                      decoration:
-                          InputDecoration(labelText: 'Ripeti la password'),
+                      decoration: InputDecoration(
+                          labelText: 'Ripeti la password',
+                          labelStyle: TextStyle(fontStyle: FontStyle.italic)),
                       validator: (value) {}),
                 ),
                 Row(
                   verticalDirection: VerticalDirection.down,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ElevatedButton(
-                        style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all<Size>(
-                              Size.fromWidth(330)),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.green),
-                        ),
-                        child: Text('Register'),
-                        onPressed: () {})
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                            fixedSize: MaterialStateProperty.all<Size>(
+                                Size.fromWidth(310.0)),
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.green),
+                          ),
+                          child: Text('Register'),
+                          onPressed: () {}),
+                    )
                   ],
                 )
               ],
