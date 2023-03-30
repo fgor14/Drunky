@@ -1,4 +1,3 @@
-import 'package:drunky_app/screen/drinks_list_screen.dart';
 import 'package:drunky_app/screen/welcomePage.dart';
 import 'package:drunky_app/screen/homepage_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +33,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-List<Widget> pages = [Homepage(), Drinks()];
+List<Widget> pages = [Homepage()];
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
@@ -59,8 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
           destinations: [
             NavigationDestination(
                 icon: Icon(Icons.home_outlined), label: 'Homepage'),
-            NavigationDestination(
-                icon: Icon(Icons.local_drink), label: 'Drinks'),
             NavigationDestination(icon: Icon(Icons.add), label: 'Create'),
             NavigationDestination(
                 icon: Icon(Icons.favorite_outline), label: 'Favorite')
