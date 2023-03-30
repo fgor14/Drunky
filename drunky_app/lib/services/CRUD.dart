@@ -32,7 +32,6 @@ class _HomePageState extends State<HomePage> {
 // text fields' controllers
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _recipeController = TextEditingController();
 
   final CollectionReference _products =
       FirebaseFirestore.instance.collection('drinks');
@@ -58,12 +57,12 @@ class _HomePageState extends State<HomePage> {
                   decoration: const InputDecoration(labelText: 'Name'),
                 ),
                 TextField(
+                  keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
                   controller: _descriptionController,
-                  decoration: const InputDecoration(labelText: 'Description'),
-                ),
-                TextField(
-                  controller: _recipeController,
-                  decoration: const InputDecoration(labelText: 'Recipe'),
+                  decoration: const InputDecoration(
+                    labelText: 'Description',
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -72,16 +71,13 @@ class _HomePageState extends State<HomePage> {
                   child: const Text('Create'),
                   onPressed: () async {
                     final String name = _nameController.text;
-                    final String description =_descriptionController.text;
-                    final String recipe =_recipeController.text;
+                    final String description  = _descriptionController.text;
                     
-                    if (description != null && recipe != null) {
-                        await _products.add({"name": name, "description": description , "recipe": recipe });
+                    if (description != null) {
+                        await _products.add({"name": name, "description": description});
 
                       _nameController.text = '';
                       _descriptionController.text = '';
-                      _recipeController.text = '';
-                      
                         Navigator.of(context).pop();
                     }
                   },
@@ -97,8 +93,6 @@ class _HomePageState extends State<HomePage> {
 
       _nameController.text = documentSnapshot['name'];
       _descriptionController.text = documentSnapshot['description'];
-      _recipeController.text = documentSnapshot['recipe'];
-      
     }
 
     await showModalBottomSheet(
@@ -127,14 +121,6 @@ class _HomePageState extends State<HomePage> {
                     labelText: 'Description',
                   ),
                 ),
-                TextField(
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  controller: _recipeController,
-                  decoration: const InputDecoration(
-                    labelText: 'Recipe',
-                  ),
-                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -142,20 +128,16 @@ class _HomePageState extends State<HomePage> {
                   child: const Text( 'Update'),
                   onPressed: () async {
                     final String name = _nameController.text;
-                    final String description =_descriptionController.text;
-                    final String recipe =_recipeController.text;
+                    final String description = _descriptionController.text;
                     if (description != null) {
 
                         await _products
                             .doc(documentSnapshot!.id)
-                            .update({"name": name, "description": description , "recipe": recipe});
+                            .update({"name": name, "description": description});
                       _nameController.text = '';
                       _descriptionController.text = '';
-                      _recipeController.text = '';
                         Navigator.of(context).pop();
                     }
-
-                    
                   },
                 )
               ],
@@ -168,14 +150,14 @@ class _HomePageState extends State<HomePage> {
     await _products.doc(productId).delete();
 
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Drink eliminato con successo!')));
+        content: Text('You have successfully deleted a product')));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Drunky')),
+        title: const Center(child: Text('Firebase Firestore')),
       ),
       body: StreamBuilder(
         stream: _products.snapshots(),
@@ -191,7 +173,6 @@ class _HomePageState extends State<HomePage> {
                   child: ListTile(
                     title: Text(documentSnapshot['name']),
                     subtitle: Text(documentSnapshot['description']),
-                    // va aggiunto anche subtitle: Text(documentSnapshot['recipe']),
                     trailing: SizedBox(
                       width: 100,
                       child: Row(
