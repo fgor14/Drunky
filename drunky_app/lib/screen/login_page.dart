@@ -16,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.green,
+          automaticallyImplyLeading: false,
           title: Image.asset('assets/images/logo.png', height: 25.0),
           centerTitle: true,
           actions: [
@@ -23,11 +24,28 @@ class _LoginPageState extends State<LoginPage> {
               height: 25,
               width: 100,
               child: IconButton(
-                  iconSize: 18.0,
-                  onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => RegisterPage())),
-                  icon: Text('Registrati')),
-            )
+                iconSize: 18.0,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          RegisterPage(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return SlideTransition(
+                          position: Tween<Offset>(
+                            begin: const Offset(1.0, 0.0),
+                            end: Offset.zero,
+                          ).animate(animation),
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
+                },
+                icon: Text('Registrati'),
+              ),
+            ),
           ],
         ),
         body: Container(
@@ -40,29 +58,34 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 40),
                 Text(
                   'Login',
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontStyle: FontStyle.normal,
+                  ),
                 ),
                 SizedBox(height: 50.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
-                      decoration:
-                          InputDecoration(labelText: 'Metti email o nome'),
+                      decoration: InputDecoration(
+                          labelText: 'Email o username',
+                          labelStyle: TextStyle(fontStyle: FontStyle.italic)),
                       validator: (value) {
                         if (value!.isEmpty ||
-                            RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}')
+                            RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
                                 .hasMatch(value)) return "Metti il nome giusto";
                       }),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
-                      decoration:
-                          InputDecoration(labelText: 'Metti la password'),
+                      decoration: InputDecoration(
+                          labelText: 'Metti la password',
+                          labelStyle: TextStyle(fontStyle: FontStyle.italic)),
                       validator: (value) {
                         if (value!.isEmpty ||
                             RegExp(r'^[a-z A-Z] + @ + . [0-9] +$')
-                                .hasMatch(value)) return "Metti il nome giusto";
+                                .hasMatch(value)) return "La password è errata";
                       }),
                 ),
                 Row(
@@ -79,9 +102,23 @@ class _LoginPageState extends State<LoginPage> {
                             MaterialStateProperty.all<Color>(Colors.green),
                       ),
                       child: Text('Login'),
-                      onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context)=> MyHomePage())),
-                    )
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    MyHomePage(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 )
               ],
