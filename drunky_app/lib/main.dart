@@ -37,7 +37,6 @@ class MyHomePage extends StatefulWidget {
 
 List<Widget> pages = [
   Homepage(), 
-  Drinks(),
   CreateScreen()
   ];
 
@@ -64,8 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
           destinations: [
             NavigationDestination(
                 icon: Icon(Icons.home_outlined), label: 'Homepage'),
-            NavigationDestination(
-                icon: Icon(Icons.local_drink), label: 'Drinks'),
             NavigationDestination(
               icon: Icon(Icons.add), label: 'Create'),
             NavigationDestination(
