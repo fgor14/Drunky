@@ -1,3 +1,5 @@
+import 'package:drunky_app/screen/create_screen.dart';
+import 'package:drunky_app/screen/favorite_screen.dart';
 import 'package:drunky_app/screen/welcomePage.dart';
 import 'package:drunky_app/screen/homepage_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,7 @@ void main() async {
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
+   
 
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -33,7 +36,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-List<Widget> pages = [Homepage()];
+List<Widget> pages = [Homepage(), CreateScreen(), Favorite()];
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
